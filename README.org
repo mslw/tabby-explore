@@ -1,0 +1,34 @@
+* Tabby file explorations
+
+** My scripts
+
+*** Convert tabby file listing to catalog metadata: =tabby2filemeta.py=
+
+Usage: =python tabby2filemeta.py ds_file_path target_file=
+
+Input is a *dataset* tabby file (so we can get dataset id), we assume
+the following convention to get matching files file:
+- dataset: =PROJECT_dataset-name.tsv=
+- file: =PROJECT_dataset-name_files.tsv=
+
+*** Make a file listing from an ftp server: =list_pride.py=
+
+I used this script to create a tabby file listing contents of several
+ProteomeXchange datasets (input & output hardcoded).
+
+*** Convert ProteomeXchange dataset to catalog metadata
+
+I did a very basic and incomplete conversion of ProteomeXchange XML
+file to catalog dataset metadata. Input & output hardcoded.
+
+** My Workflow:
+
+- create tabby files
+  - hand-edit a dataset tabby file
+  - create files tabby file with =list_pride.py=
+- translate tabby files
+  - =tubby2catalog= from =catalog-utilities=
+  - =tabby2filemeta.py= from this repo
+- create catalog with =datalad catalog create=
+  - edit catalog config to accept any source
+  - add translated tabby files
